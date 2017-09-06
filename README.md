@@ -13,7 +13,7 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
 ## Table of Contents
 
 * [Installation](#installation)
-* [Usage](#usage)
+* [Example](#example)
   * [Indeterminate progress bar](#indeterminate-progress-bar)
   * [Determinate progress bar](#determinate-progress-bar)
 * [API](#api)
@@ -43,7 +43,7 @@ Install with `npm`:
 $ npm install electron-progressbar --save
 ```
 
-## Usage
+## Example
 
 ### Indeterminate progress bar
 
