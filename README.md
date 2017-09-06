@@ -74,9 +74,12 @@ app.on("ready", function(){
 });
 ```
 
+* * *
+
+
 ### Determinate progress bar
+
 Example of a **determinate** progress bar - used when your application can accurately calculate how long the process will last
--------
 
 ``` js
 const {app} = require("electron");
