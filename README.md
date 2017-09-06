@@ -74,9 +74,7 @@ app.on("ready", function(){
 });
 ```
 
-
 * * *
-
 
 ### Determinate progress bar
 
