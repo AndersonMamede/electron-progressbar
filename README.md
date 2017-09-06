@@ -146,9 +146,13 @@ Create a new progress bar. Because electron's BrowserWindow is used to display t
 | [options.browserWindow.width] | <code>number</code> | <code>450</code> | Progress bar window's width in pixels. |
 | [options.browserWindow.height] | <code>number</code> | <code>175</code> | Progress bar window's height in pixels. |
 
+* * *
+
 ##### `getOptions()` ⇒ <code>object</code>
 
 Return a copy of all current options.
+
+* * *
 
 ##### `on(eventName, listener)` ⇒ <code>reference to this</code>
 
@@ -164,24 +168,33 @@ Available events:
 | completed | value | Fired when progress bar is completed, i.e., its value reaches `maxValue` or method `complete` is called. The listener receives, as first parameter, the current progress bar's value. |
 | aborted | value | Fired if progress bar is closed when it's not completed yet, i.e., when user closes progress bar window or method `close` is called before progress bar is completed. The listener receives, as first parameter, the current progress bar's value. |
 
+* * *
+
 ##### `complete()`
 
 Set progress bar as complete. This means the whole process is finished.
 
 If progress bar is **indeterminate**, a manual call to this method is **required** because it's the only way to complete the process and trigger the `complete` event, otherwise the progress bar would be displayed forever.
 
+* * *
+
 ##### `close()`
 
 Close progress bar window. If progress bar is not completed yet, it'll be aborted and event `aborted` will be fired.
+
+* * *
 
 ##### `isInProgress()` ⇒ <code>boolean</code>
 
 Return true if progress bar is currently in progress, i.e., it hasn't been completed nor aborted yet, otherwise false.
 
+* * *
+
 ##### `isCompleted()` ⇒ <code>boolean</code>
 
 Return true if progress bar is completed, otherwise false.
 
+* * *
 
 ## License
 
