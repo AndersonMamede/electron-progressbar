@@ -22,8 +22,8 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
       * [`.getOptions()`](#getoptions--object) ⇒ <code>object</code>
       * [`.on(eventName, listener)`](#oneventname-listener--reference-to-this) ⇒ <code>reference to this</code>
         * [`Events`](#events)
-          * [`completed`](#event-completed)
           * [`progress`](#event-progress)
+          * [`completed`](#event-completed)
           * [`aborted`](#event-aborted)
       * [`.complete()`](#complete)
       * [`.close()`](#close)
