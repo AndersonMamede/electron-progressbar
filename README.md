@@ -54,11 +54,6 @@ function displayProgressBar() {
     indeterminate: true,
     text: 'Preparing data...',
     detail: 'Wait...',
-    style: {
-      bar: {
-        'background-color': '#FF0000'
-      }
-    },
     browserWindow: {
       icon: 'icon.ico'
     }
@@ -99,11 +94,6 @@ function displayProgressBar(){
     maxValue: 120, // used to determine when process is completed; default: 100
     text: 'Preparing data...',
     detail: 'Wait...',
-    style: {
-      bar: {
-        'background-color': '#FF0000'
-      }
-    },
     browserWindow: {
       icon: 'icon.ico'
     }
@@ -155,8 +145,8 @@ Create a new progress bar. Because electron's BrowserWindow is used to display t
 | [options.style] | <code>object</code> |  | Visual styles for elements: `text`, `detail`, `bar` and `value`. All elements' properties are purely CSS, just the way it is used in a `CSS file`. |
 | [options.style.text] | <code>object</code> |  | An object containing any CSS properties for styling the `text` element. |
 | [options.style.detail] | <code>object</code> |  | An object containing any CSS properties for styling the `detail` element. |
-| [options.style.bar] | <code>object</code> | <code>{'width':'100%', 'background-color':'#DEDEDE'}</code> | An object containing any CSS properties for styling the `bar` in the progress bar. |
-| [options.style.value] | <code>object</code> | <code>{'background-color':'#22328C'}</code> | An object containing any CSS properties for styling the `value` in the progress bar. |
+| [options.style.bar] | <code>object</code> | <code>{'width':'100%', 'background-color':'#BBE0F1'}</code> | An object containing any CSS properties for styling the `bar` in the progress bar. |
+| [options.style.value] | <code>object</code> | <code>{'background-color':'#0976A9'}</code> | An object containing any CSS properties for styling the `value` in the progress bar. |
 | [options.browserWindow] | <code>object</code> |  | [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few properties are used per default, you can specify any of [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). |
 | [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A BrowserWindow instance. If informed, the progress bar window will block its parent window so user can't interact with it until the progress bar is closed, i.e., completed or aborted. |
 | [options.browserWindow.modal] | <code>boolean</code> | <code>true</code> | Whether this is a modal window. This actually only works if progress bar window is a child window, i.e., when its `parent` is informed. |
