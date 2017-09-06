@@ -53,14 +53,10 @@ Example of an **indeterminate** progress bar - used when your application can't 
 const {app} = require('electron');
 const ProgressBar = require('electron-progressbar');
 
-function displayProgressBar() {
+app.on('ready', function() {
   var progressBar = new ProgressBar({
-    indeterminate: true,
     text: 'Preparing data...',
-    detail: 'Wait...',
-    browserWindow: {
-      icon: 'icon.ico'
-    }
+    detail: 'Wait...'
   });
   
   progressBar
@@ -71,15 +67,9 @@ function displayProgressBar() {
       console.info(`aborted... ${value}`);
     });
   
-  // there is no value for indeterminate progress bar so it
-  // should be just set as complete after all work is done
   setTimeout(function() {
     progressBar.complete();
   }, 3000);
-};
-
-app.on('ready', function() {
-  displayProgressBar();
 });
 ```
 
@@ -93,40 +83,36 @@ Example of a **determinate** progress bar - used when your application can accur
 const {app} = require('electron');
 const ProgressBar = require('electron-progressbar');
 
-function displayProgressBar(){
+app.on('ready', function() {
   var progressBar = new ProgressBar({
-    maxValue: 120, // used to determine when process is completed; default: 100
-    text: 'Preparing data...',
-    detail: 'Wait...',
-    browserWindow: {
-      icon: 'icon.ico'
-    }
+    closeOnComplete: false,
+    indeterminate: false,
+    text: 'Preparing data...'
   });
   
   progressBar
     .on('progress', function(value) {
-      progressBar.detail = `${value} / ${progressBar.getOptions().maxValue}`;
+      progressBar.detail = `Value ${value} of ${progressBar.getOptions().maxValue}...`;
     })
     .on('completed', function(value) {
       clearInterval(interval);
+      progressBar.detail = 'Completed. Exiting...';
+      
+      setTimeout(function() {
+        progressBar.close();
+      }, 1500);
     })
     .on('aborted', function(value) {
       console.info(`aborted... ${value}`);
     });
   
-  // update progress bar status;
-  // (here we are just simulating a work being done)
   var interval = setInterval(function() {
-    // doStuff();
     progressBar.value += 1;
   }, 20);
-}
-
-app.on('ready', function() {
-  displayProgressBar();
 });
 ```
 
+All examples are in [example folder](/example).
 
 ## API
 
