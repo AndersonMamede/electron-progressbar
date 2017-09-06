@@ -3,9 +3,7 @@
 
 electron-progressbar
 ================
-> electron-progressbar is an easy way of showing progress bar window in Electron applications
-
-electron-progressbar provides an easy-to-use and highly customizable API to show and control progress bars on Electron application.
+> electron-progressbar provides an easy-to-use and highly customizable API to show and control progress bar windows on Electron application.
 
 You can customize windows (electron's BrowserWindow), progress bars' visual aspects (CSS), texts and also all visible information.
 
@@ -104,23 +102,23 @@ Create a new progress bar. Because electron's BrowserWindow is used to display t
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [options] | <code>object</code> |  |  |
+| [options] | <code>object</code> |  | electron-progressbar options |
 | [options.abortOnError] | <code>boolean</code> | <code>false</code> | Whether progress bar should abort and close if an error occurs internally. |
-| [options.indeterminate] | <code>boolean</code> | <code>false</code> | Whether progress bar should be **indeterminate**. If false, progress bar will be **determinate** |
-| [options.initialValue] | <code>number</code> | <code>0</code> | Progress bar's initial value. |
-| [options.maxValue] | <code>number</code> | <code>100</code> | Progress bar's max value. When progress bar's value reaches this number, it will be set as completed and event `complete` will be fired. Used only for determinate progress bar. |
-| [options.closeOnComplete] | <code>boolean</code> | <code>true</code> | Whether progress bar's window should be automatically closed after completed. If false, the progress bar must be manually closed by calling its `close` method. |
-| [options.title] | <code>string</code> | <code>Wait...</code> | Text shown on the title bar. |
-| [options.text] | <code>string</code> | <code>Wait...</code> | Text shown inside the window and above the progress bar. |
-| [options.detail] | <code>string</code> | <code>null</code> | Text shown between the `text` and the progress bar. Used to display the current status, i.e., what part of the whole process is being done. Setting this property later should be more useful because your application can determine and display, in real time, what is currently happening. |
-| [options.style] | <code>object</code> | <code></code> | Visual styles. All elements properties are purely CSS, just the way it is used in an CSS file. |
-| [options.style.text] | <code>object</code> | <code></code> | An object containing any CSS properties for styling the text element. |
-| [options.style.detail] | <code>object</code> | <code></code> | An object containing any CSS properties for styling the detail element. |
-| [options.style.bar] | <code>object</code> | <code>{"width":"100%", "background-color":"#DEDEDE"}</code> | An object containing any CSS properties for styling the bar in the progress bar. |
-| [options.style.value] | <code>object</code> | <code>{"background-color":"#22328C"}</code> | An object containing any CSS properties for styling the value in the progress bar. |
-| [options.browserWindow] | <code>object</code> | <code></code> | [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few properties are used per default, you can specify any of [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). |
-| [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A BrowserWindow instance. If informed, the progress bar's window will block its parent window so user can't interact with it until the progress bar is completed or aborted. |
-| [options.browserWindow.modal] | <code>boolean</code> | <code>true</code> | Whether this is a modal window. This actually only works when the window is a child window, i.e., when its `parent` is informed. |
+| [options.indeterminate] | <code>boolean</code> | <code>false</code> | Whether progress bar should be **indeterminate**. If false, progress bar will be **determinate**. |
+| [options.initialValue] | <code>number</code> | <code>0</code> | Progress bar's initial value. Used only for determinate progress bar. |
+| [options.maxValue] | <code>number</code> | <code>100</code> | Progress bar's maximum value. When progress bar's value reaches this number, it will be set as completed and event `complete` will be fired. Used only for determinate progress bar. |
+| [options.closeOnComplete] | <code>boolean</code> | <code>true</code> | Whether progress bar window should be automatically closed after completed. If false, the progress bar must be manually closed by calling its `close` method. |
+| [options.title] | <code>string</code> | <code>"Wait..."</code> | Text shown on the title bar. |
+| [options.text] | <code>string</code> | <code>"Wait..."</code> | Text shown inside the window and above the progress bar. |
+| [options.detail] | <code>string</code> | <code>"" (empty)</code> | Text shown between `text` and the progress bar element. Used to display the current status, i.e., what part of the whole process is being done. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
+| [options.style] | <code>object</code> |  | Visual styles for elements: `text`, `detail`, `bar` and `value`. All elements' properties are purely CSS, just the way it is used in a `CSS file`. |
+| [options.style.text] | <code>object</code> |  | An object containing any CSS properties for styling the `text` element. |
+| [options.style.detail] | <code>object</code> |  | An object containing any CSS properties for styling the `detail` element. |
+| [options.style.bar] | <code>object</code> | <code>{"width":"100%", "background-color":"#DEDEDE"}</code> | An object containing any CSS properties for styling the `bar` in the progress bar. |
+| [options.style.value] | <code>object</code> | <code>{"background-color":"#22328C"}</code> | An object containing any CSS properties for styling the `value` in the progress bar. |
+| [options.browserWindow] | <code>object</code> |  | [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few properties are used per default, you can specify any of [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). |
+| [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A BrowserWindow instance. If informed, the progress bar window will block its parent window so user can't interact with it until the progress bar is completed or aborted. |
+| [options.browserWindow.modal] | <code>boolean</code> | <code>true</code> | Whether this is a modal window. This actually only works if progress bar window is a child window, i.e., when its `parent` is informed. |
 | [options.browserWindow.resizable] | <code>boolean</code> | <code>false</code> | Whether window is resizable. |
 | [options.browserWindow.closable] | <code>boolean</code> | <code>false</code> | Whether window is closable. |
 | [options.browserWindow.minimizable] | <code>boolean</code> | <code>false</code> | Whether window is minimizable. |
@@ -143,14 +141,14 @@ Available events:
 | Event name | Receives parameter | Description |
 | --- | --- | --- |
 | progress | value | Available only for **determinate** progress bar. Fired every time the progress bar's value is changed. The listener receives, as first parameter, the current progress bar's value. |
-| completed | value | Fired when progress bar is completed, i.e., its value reaches `maxValue` or method `close` is called. |
-| aborted | value | Fired if progress bar is closed when it's not completed yet, i.e., when user closes progress bar's window or method `close` is called before progress bar is completed. |
+| completed | value | Fired when progress bar is completed, i.e., its value reaches `maxValue` or method `complete` is called. The listener receives, as first parameter, the current progress bar's value. |
+| aborted | value | Fired if progress bar is closed when it's not completed yet, i.e., when user closes progress bar window or method `close` is called before progress bar is completed. The listener receives, as first parameter, the current progress bar's value. |
 
 #### `complete()`
 
 Set progress bar as complete. This means the whole process is finished.
 
-If progress bar is **indeterminate**, a manual call to this method is required because it's the only way to complete the process and trigger the `complete` event, otherwise the progress bar would be displayed forever.
+If progress bar is **indeterminate**, a manual call to this method is **required** because it's the only way to complete the process and trigger the `complete` event, otherwise the progress bar would be displayed forever.
 
 #### `close()`
 
