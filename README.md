@@ -43,7 +43,7 @@ $ npm install electron-progressbar --save
 
 ### Indeterminate progress bar
 
-Example of an **indeterminate** progress bar - used when your application can't calculate how long the process will last
+Example of an **indeterminate** progress bar - used when your application can't calculate how long the process will last:
 
 ``` js
 const {app} = require('electron');
@@ -83,7 +83,7 @@ app.on('ready', function() {
 
 ### Determinate progress bar
 
-Example of a **determinate** progress bar - used when your application can accurately calculate how long the process will last
+Example of a **determinate** progress bar - used when your application can accurately calculate how long the process will last:
 
 ``` js
 const {app} = require('electron');
@@ -113,6 +113,7 @@ function displayProgressBar(){
   // update progress bar status;
   // (here we are just simulating a work being done)
   var interval = setInterval(function() {
+    // doStuff();
     progressBar.value += 1;
   }, 20);
 }
@@ -129,15 +130,15 @@ app.on('ready', function() {
 
 ##### `new ProgressBar(options, [electronApp])`
 
-Create a new progress bar. Because electron's BrowserWindow is used to display the progress bar and it only works after electron's "ready" event, you have wait for the "ready" event before creating a progress bar; optionally, you can just pass electron's app as a second parameter (`electronApp`).
+Create a new progress bar. Because [electron's BrowserWindow](https://github.com/electron/electron/blob/master/docs/api/browser-window.md) is used to display the progress bar and it only works after [electron's "ready" event](https://github.com/electron/electron/blob/master/docs/api/app.md#event-ready), you have wait for the "ready" event before creating a progress bar; optionally, you can just pass electron's app as a second parameter (`electronApp`).
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [options] | <code>object</code> |  | electron-progressbar options |
 | [options.abortOnError] | <code>boolean</code> | <code>false</code> | Whether progress bar should abort and close if an error occurs internally. |
-| [options.indeterminate] | <code>boolean</code> | <code>false</code> | Whether progress bar should be **indeterminate**. If false, progress bar will be **determinate**. |
-| [options.initialValue] | <code>number</code> | <code>0</code> | Progress bar's initial value. Used only for determinate progress bar. |
-| [options.maxValue] | <code>number</code> | <code>100</code> | Progress bar's maximum value. When progress bar's value reaches this number, it will be set as completed and event `complete` will be fired. Used only for determinate progress bar. |
+| [options.indeterminate] | <code>boolean</code> | <code>true</code> | Whether progress bar should be **indeterminate**. If false, progress bar will be **determinate**. |
+| [options.initialValue] | <code>number</code> | <code>0</code> | Progress bar's initial value. _Used only for determinate progress bar._ |
+| [options.maxValue] | <code>number</code> | <code>100</code> | Progress bar's maximum value. When progress bar's value reaches this number, it will be set as completed and event `complete` will be fired. _Used only for determinate progress bar._ |
 | [options.closeOnComplete] | <code>boolean</code> | <code>true</code> | Whether progress bar window should be automatically closed after completed. If false, the progress bar must be manually closed by calling its `close` method. |
 | [options.title] | <code>string</code> | <code>'Wait...'</code> | Text shown on the title bar. |
 | [options.text] | <code>string</code> | <code>'Wait...'</code> | Text shown inside the window and above the progress bar. |
