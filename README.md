@@ -17,13 +17,13 @@ You can customize windows (electron's BrowserWindow), progress bars' visual aspe
   * [Indeterminate progress bar](#indeterminate-progress-bar)
   * [Determinate progress bar](#determinate-progress-bar)
 * [API](#api)
-    * [`.new ProgressBar(options, [electronApp])`]
-    * [`.getOptions()`] ⇒ <code>object</code>
-    * [`.on(eventName, listener)`] ⇒ <code>reference to this</code>
-    * [`.complete()`]
-    * [`.close()`]
-    * [`.isInProgress()`] ⇒ <code>boolean</code>
-    * [`.isCompleted()`] ⇒ <code>boolean</code>
+    * [`.new ProgressBar(options, [electronApp])`](#new-progressbaroptions-electronapp)
+    * [`.getOptions()`](#getoptions--object) ⇒ <code>object</code>
+    * [`.on(eventName, listener)`](#oneventname-listener--reference-to-this) ⇒ <code>reference to this</code>
+    * [`.complete()`](#complete)
+    * [`.close()`](#close)
+    * [`.isInProgress()`](#isinprogress--boolean) ⇒ <code>boolean</code>
+    * [`.isCompleted()`](#iscompleted--boolean) ⇒ <code>boolean</code>
 * [License](#license)
 
 ## Installation
