@@ -49,15 +49,16 @@ Example of an **indeterminate** progress bar - used when your application can't 
 const {app} = require('electron');
 const ProgressBar = require('electron-progressbar');
 
-app.on('ready', function() {
-  // electron-progressbar must be created only after electron application
-  // is "ready" because electron's BrowserWindow module doesn't work before this;
-  // alternatively, you can pass the "app" object (electron) to ProgressBar's
-  // constructor as a second parameter, e.g. ProgressBar({options...}, app)
+function displayProgressBar() {
   var progressBar = new ProgressBar({
     indeterminate: true,
     text: 'Preparing data...',
     detail: 'Wait...',
+    style: {
+      bar: {
+        'background-color': '#FF0000'
+      }
+    },
     browserWindow: {
       icon: 'icon.ico'
     }
@@ -76,6 +77,10 @@ app.on('ready', function() {
   setTimeout(function() {
     progressBar.complete();
   }, 3000);
+};
+
+app.on('ready', function() {
+  displayProgressBar();
 });
 ```
 
@@ -89,38 +94,42 @@ Example of a **determinate** progress bar - used when your application can accur
 const {app} = require('electron');
 const ProgressBar = require('electron-progressbar');
 
-// instead of waiting for electron's "ready" event, we pass electron's app
-// reference ("app") as a second parameter
-var progressBar = new ProgressBar({
-  maxValue: 120, // used to determine when process is completed; default: 100
-  text: 'Preparing data...',
-  detail: 'Wait...',
-  style: {
-    bar: {
-      'background-color': '#FF0000'
+function displayProgressBar(){
+  var progressBar = new ProgressBar({
+    maxValue: 120, // used to determine when process is completed; default: 100
+    text: 'Preparing data...',
+    detail: 'Wait...',
+    style: {
+      bar: {
+        'background-color': '#FF0000'
+      }
+    },
+    browserWindow: {
+      icon: 'icon.ico'
     }
-  },
-  browserWindow: {
-    icon: 'icon.ico'
-  }
-}, app);
-
-progressBar
-  .on('progress', function(value) {
-    progressBar.detail = `${value} / ${progressBar.getOptions().maxValue}`;
-  })
-  .on('completed', function(value) {
-    clearInterval(interval);
-  })
-  .on('aborted', function(value) {
-    console.info(`aborted... ${value}`);
   });
+  
+  progressBar
+    .on('progress', function(value) {
+      progressBar.detail = `${value} / ${progressBar.getOptions().maxValue}`;
+    })
+    .on('completed', function(value) {
+      clearInterval(interval);
+    })
+    .on('aborted', function(value) {
+      console.info(`aborted... ${value}`);
+    });
+  
+  // update progress bar status;
+  // (here we are just simulating a work being done)
+  var interval = setInterval(function() {
+    progressBar.value += 1;
+  }, 20);
+}
 
-// update progress bar status;
-// here we are just simulating a work being done
-var interval = setInterval(function() {
-  progressBar.value += 1;
-}, 50);
+app.on('ready', function() {
+  displayProgressBar();
+});
 ```
 
 
@@ -149,7 +158,7 @@ Create a new progress bar. Because electron's BrowserWindow is used to display t
 | [options.style.bar] | <code>object</code> | <code>{'width':'100%', 'background-color':'#DEDEDE'}</code> | An object containing any CSS properties for styling the `bar` in the progress bar. |
 | [options.style.value] | <code>object</code> | <code>{'background-color':'#22328C'}</code> | An object containing any CSS properties for styling the `value` in the progress bar. |
 | [options.browserWindow] | <code>object</code> |  | [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few properties are used per default, you can specify any of [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). |
-| [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A BrowserWindow instance. If informed, the progress bar window will block its parent window so user can't interact with it until the progress bar is completed or aborted. |
+| [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A BrowserWindow instance. If informed, the progress bar window will block its parent window so user can't interact with it until the progress bar is closed, i.e., completed or aborted. |
 | [options.browserWindow.modal] | <code>boolean</code> | <code>true</code> | Whether this is a modal window. This actually only works if progress bar window is a child window, i.e., when its `parent` is informed. |
 | [options.browserWindow.resizable] | <code>boolean</code> | <code>false</code> | Whether window is resizable. |
 | [options.browserWindow.closable] | <code>boolean</code> | <code>false</code> | Whether window is closable. |
