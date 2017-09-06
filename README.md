@@ -17,13 +17,18 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
   * [Indeterminate progress bar](#indeterminate-progress-bar)
   * [Determinate progress bar](#determinate-progress-bar)
 * [API](#api)
-    * [`.new ProgressBar(options, [electronApp])`](#new-progressbaroptions-electronapp)
-    * [`.getOptions()`](#getoptions--object) ⇒ <code>object</code>
-    * [`.on(eventName, listener)`](#oneventname-listener--reference-to-this) ⇒ <code>reference to this</code>
-    * [`.complete()`](#complete)
-    * [`.close()`](#close)
-    * [`.isInProgress()`](#isinprogress--boolean) ⇒ <code>boolean</code>
-    * [`.isCompleted()`](#iscompleted--boolean) ⇒ <code>boolean</code>
+    * [`Methods`](#methods)
+      * [`.new ProgressBar(options, [electronApp])`](#new-progressbaroptions-electronapp)
+      * [`.getOptions()`](#getoptions--object) ⇒ <code>object</code>
+      * [`.on(eventName, listener)`](#oneventname-listener--reference-to-this) ⇒ <code>reference to this</code>
+      * [`.complete()`](#complete)
+      * [`.close()`](#close)
+      * [`.isInProgress()`](#isinprogress--boolean) ⇒ <code>boolean</code>
+      * [`.isCompleted()`](#iscompleted--boolean) ⇒ <code>boolean</code>
+    * [`Properties`](#properties)
+      * [`value`](#value--number) ⇒ number
+      * [`text`](#text--string) ⇒ string
+      * [`detail`](#detail--string) ⇒ string
 * [License](#license)
 
 ## Installation
@@ -41,34 +46,34 @@ $ npm install electron-progressbar --save
 Example of an **indeterminate** progress bar - used when your application can't calculate how long the process will last
 
 ``` js
-const {app} = require("electron");
-const ProgressBar = require("electron-progressbar");
+const {app} = require('electron');
+const ProgressBar = require('electron-progressbar');
 
-app.on("ready", function(){
+app.on('ready', function() {
   // electron-progressbar must be created only after electron application
   // is "ready" because electron's BrowserWindow module doesn't work before this;
   // alternatively, you can pass the "app" object (electron) to ProgressBar's
   // constructor as a second parameter, e.g. ProgressBar({options...}, app)
   var progressBar = new ProgressBar({
     indeterminate: true,
-    text: "Preparing data...",
-    detail: "Wait...",
+    text: 'Preparing data...',
+    detail: 'Wait...',
     browserWindow: {
-      icon: "icon.ico"
+      icon: 'icon.ico'
     }
   });
   
   progressBar
-    .on("completed", function(value){
+    .on('completed', function(value) {
       console.info(`completed... ${value}`);
     })
-    .on("aborted", function(value){
+    .on('aborted', function(value) {
       console.info(`aborted... ${value}`);
     });
   
   // there is no value for indeterminate progress bar so it
   // should be just set as complete after all work is done
-  setTimeout(function(){
+  setTimeout(function() {
     progressBar.complete();
   }, 3000);
 });
@@ -81,40 +86,47 @@ app.on("ready", function(){
 Example of a **determinate** progress bar - used when your application can accurately calculate how long the process will last
 
 ``` js
-const {app} = require("electron");
-const ProgressBar = require("electron-progressbar");
+const {app} = require('electron');
+const ProgressBar = require('electron-progressbar');
 
 // instead of waiting for electron's "ready" event, we pass electron's app
 // reference ("app") as a second parameter
 var progressBar = new ProgressBar({
   maxValue: 120, // used to determine when process is completed; default: 100
-  text: "Preparing data...",
-  detail: "Wait...",
+  text: 'Preparing data...',
+  detail: 'Wait...',
+  style: {
+    bar: {
+      'background-color': '#FF0000'
+    }
+  },
   browserWindow: {
-    icon: "icon.ico"
+    icon: 'icon.ico'
   }
 }, app);
 
 progressBar
-  .on("progress", function(value){
+  .on('progress', function(value) {
     progressBar.detail = `${value} / ${progressBar.getOptions().maxValue}`;
   })
-  .on("completed", function(value){
+  .on('completed', function(value) {
     clearInterval(interval);
   })
-  .on("aborted", function(value){
+  .on('aborted', function(value) {
     console.info(`aborted... ${value}`);
   });
 
 // update progress bar status;
 // here we are just simulating a work being done
-var interval = setInterval(function(){
+var interval = setInterval(function() {
   progressBar.value += 1;
 }, 50);
 ```
 
 
 ## API
+
+### `Methods`
 
 ##### `new ProgressBar(options, [electronApp])`
 
@@ -128,14 +140,14 @@ Create a new progress bar. Because electron's BrowserWindow is used to display t
 | [options.initialValue] | <code>number</code> | <code>0</code> | Progress bar's initial value. Used only for determinate progress bar. |
 | [options.maxValue] | <code>number</code> | <code>100</code> | Progress bar's maximum value. When progress bar's value reaches this number, it will be set as completed and event `complete` will be fired. Used only for determinate progress bar. |
 | [options.closeOnComplete] | <code>boolean</code> | <code>true</code> | Whether progress bar window should be automatically closed after completed. If false, the progress bar must be manually closed by calling its `close` method. |
-| [options.title] | <code>string</code> | <code>"Wait..."</code> | Text shown on the title bar. |
-| [options.text] | <code>string</code> | <code>"Wait..."</code> | Text shown inside the window and above the progress bar. |
-| [options.detail] | <code>string</code> | <code>"" (empty)</code> | Text shown between `text` and the progress bar element. Used to display the current status, i.e., what part of the whole process is being done. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
+| [options.title] | <code>string</code> | <code>'Wait...'</code> | Text shown on the title bar. |
+| [options.text] | <code>string</code> | <code>'Wait...'</code> | Text shown inside the window and above the progress bar. |
+| [options.detail] | <code>string</code> | <code>(empty)</code> | Text shown between `text` and the progress bar element. Used to display the current status, i.e., what part of the whole process is being done. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
 | [options.style] | <code>object</code> |  | Visual styles for elements: `text`, `detail`, `bar` and `value`. All elements' properties are purely CSS, just the way it is used in a `CSS file`. |
 | [options.style.text] | <code>object</code> |  | An object containing any CSS properties for styling the `text` element. |
 | [options.style.detail] | <code>object</code> |  | An object containing any CSS properties for styling the `detail` element. |
-| [options.style.bar] | <code>object</code> | <code>{"width":"100%", "background-color":"#DEDEDE"}</code> | An object containing any CSS properties for styling the `bar` in the progress bar. |
-| [options.style.value] | <code>object</code> | <code>{"background-color":"#22328C"}</code> | An object containing any CSS properties for styling the `value` in the progress bar. |
+| [options.style.bar] | <code>object</code> | <code>{'width':'100%', 'background-color':'#DEDEDE'}</code> | An object containing any CSS properties for styling the `bar` in the progress bar. |
+| [options.style.value] | <code>object</code> | <code>{'background-color':'#22328C'}</code> | An object containing any CSS properties for styling the `value` in the progress bar. |
 | [options.browserWindow] | <code>object</code> |  | [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few properties are used per default, you can specify any of [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). |
 | [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A BrowserWindow instance. If informed, the progress bar window will block its parent window so user can't interact with it until the progress bar is completed or aborted. |
 | [options.browserWindow.modal] | <code>boolean</code> | <code>true</code> | Whether this is a modal window. This actually only works if progress bar window is a child window, i.e., when its `parent` is informed. |
@@ -195,6 +207,20 @@ Return true if progress bar is currently in progress, i.e., it hasn't been compl
 Return true if progress bar is completed, otherwise false.
 
 * * *
+
+### `Properties`
+
+#### `value` ⇒ <code>number</code>
+
+Get or set progress bar's `value`. Only available for **determinate** progress bar.
+
+#### `text` ⇒ <code>number</code>
+
+Get or set the `text`. This information is shown inside the window and above the progress bar.
+
+#### `detail` ⇒ <code>number</code>
+
+Get or set the `detail`. This information is shown between `text` and the progress bar element. Useful to display the current status in real time, i.e., what part of the whole process is being done, what is currently happening.
 
 ## License
 
