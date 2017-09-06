@@ -50,6 +50,8 @@ $ npm install electron-progressbar --save
 
 Example of an **indeterminate** progress bar - used when your application can't calculate how long the process will last:
 
+![Indeterminate progress bar](/example/indeterminate.png)
+
 ``` js
 const {app} = require('electron');
 const ProgressBar = require('electron-progressbar');
@@ -79,6 +81,8 @@ app.on('ready', function() {
 ### Determinate progress bar
 
 Example of a **determinate** progress bar - used when your application can accurately calculate how long the process will last:
+
+![Determinate progress bar](/example/determinate.png)
 
 ``` js
 const {app} = require('electron');
