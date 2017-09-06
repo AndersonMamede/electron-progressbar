@@ -27,7 +27,6 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
 * [License](#license)
 
 ## Installation
-------------
 
 Install with `npm`:
 
@@ -38,8 +37,8 @@ $ npm install electron-progressbar --save
 ## Usage
 
 ### Indeterminate progress bar
+
 Example of an **indeterminate** progress bar - used when your application can't calculate how long the process will last
--------
 
 ``` js
 const {app} = require("electron");
