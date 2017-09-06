@@ -16,6 +16,7 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
 * [Example](#example)
   * [Indeterminate progress bar](#indeterminate-progress-bar)
   * [Determinate progress bar](#determinate-progress-bar)
+  * [More examples](#more-examples)
 * [API](#api)
     * [`Methods`](#methods)
       * [`.new ProgressBar(options, [electronApp])`](#new-progressbaroptions-electronapp)
@@ -112,7 +113,7 @@ app.on('ready', function() {
 });
 ```
 
-All examples are in [example folder](/example).
+<a name="more-examples"></a>More examples in [example folder](/example).
 
 ## API
 
