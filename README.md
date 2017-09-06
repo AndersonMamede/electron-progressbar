@@ -5,7 +5,7 @@ electron-progressbar
 ================
 > electron-progressbar provides an easy-to-use and highly customizable API to show and control progress bar windows on Electron application.
 
-You can customize windows (electron's BrowserWindow), progress bars' visual aspects (CSS), texts and also all visible information.
+You can customize window's aspects (electron's BrowserWindow), progress bars' visual aspects (CSS), texts and also all visible information.
 
 [![NPM](https://nodei.co/npm/electron-progressbar.png?downloads=true&stars=true)](https://www.npmjs.com/package/electron-progressbar)
 
