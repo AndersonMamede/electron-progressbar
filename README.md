@@ -22,6 +22,9 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
       * [`.getOptions()`](#getoptions--object) ⇒ <code>object</code>
       * [`.on(eventName, listener)`](#oneventname-listener--reference-to-this) ⇒ <code>reference to this</code>
         * [`Events`](#events)
+          * [`complete`](#event-complete)
+          * [`progress`](#event-progress)
+          * [`aborted`](#event-aborted)
       * [`.complete()`](#complete)
       * [`.close()`](#close)
       * [`.isInProgress()`](#isinprogress--boolean) ⇒ <code>boolean</code>
@@ -177,9 +180,9 @@ Returns a reference to `this` so that calls can be chained.
 
 | Event name | Receives parameter | Description |
 | --- | --- | --- |
-| progress | value | Available only for **determinate** progress bar. Fired every time the progress bar's value is changed. The listener receives, as first parameter, the current progress bar's value. |
-| completed | value | Fired when progress bar is completed, i.e., its value reaches `maxValue` or method `complete` is called. The listener receives, as first parameter, the current progress bar's value. |
-| aborted | value | Fired if progress bar is closed when it's not completed yet, i.e., when user closes progress bar window or method `close` is called before progress bar is completed. The listener receives, as first parameter, the current progress bar's value. |
+| <a href="#event-progress" id="progress">progress</a> | value | Available only for **determinate** progress bar. Fired every time the progress bar's value is changed. The listener receives, as first parameter, the current progress bar's value. |
+| <a href="#event-completed" id="completed">completed</a> | value | Fired when progress bar is completed, i.e., its value reaches `maxValue` or method `complete` is called. The listener receives, as first parameter, the current progress bar's value. |
+| <a href="#event-aborted" id="aborted">aborted</a> | value | Fired if progress bar is closed when it's not completed yet, i.e., when user closes progress bar window or method `close` is called before progress bar is completed. The listener receives, as first parameter, the current progress bar's value. |
 
 * * *
 
