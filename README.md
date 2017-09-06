@@ -225,13 +225,13 @@ Get or set progress bar's `value`. Only available for **determinate** progress b
 
 * * *
 
-#### `text` ⇒ <code>number</code>
+#### `text` ⇒ <code>string</code>
 
 Get or set the `text`. This information is shown inside the window and above the progress bar.
 
 * * *
 
-#### `detail` ⇒ <code>number</code>
+#### `detail` ⇒ <code>string</code>
 
 Get or set the `detail`. This information is shown between `text` and the progress bar element. Useful to display the current status in real time, i.e., what part of the whole process is being done, what is currently happening.
 
