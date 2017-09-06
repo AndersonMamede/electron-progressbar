@@ -21,6 +21,7 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
       * [`.new ProgressBar(options, [electronApp])`](#new-progressbaroptions-electronapp)
       * [`.getOptions()`](#getoptions--object) ⇒ <code>object</code>
       * [`.on(eventName, listener)`](#oneventname-listener--reference-to-this) ⇒ <code>reference to this</code>
+        * [`Events`](#events)
       * [`.complete()`](#complete)
       * [`.close()`](#close)
       * [`.isInProgress()`](#isinprogress--boolean) ⇒ <code>boolean</code>
@@ -140,16 +141,16 @@ Create a new progress bar. Because [electron's BrowserWindow](https://github.com
 | [options.initialValue] | <code>number</code> | <code>0</code> | Progress bar's initial value. _Used only for determinate progress bar._ |
 | [options.maxValue] | <code>number</code> | <code>100</code> | Progress bar's maximum value. When progress bar's value reaches this number, it will be set as completed and event `complete` will be fired. _Used only for determinate progress bar._ |
 | [options.closeOnComplete] | <code>boolean</code> | <code>true</code> | Whether progress bar window should be automatically closed after completed. If false, the progress bar must be manually closed by calling its `close` method. |
-| [options.title] | <code>string</code> | <code>'Wait...'</code> | Text shown on the title bar. |
+| [options.title] | <code>string</code> | <code>'Wait...'</code> | Text shown on title bar. |
 | [options.text] | <code>string</code> | <code>'Wait...'</code> | Text shown inside the window and above the progress bar. |
-| [options.detail] | <code>string</code> | <code>(empty)</code> | Text shown between `text` and the progress bar element. Used to display the current status, i.e., what part of the whole process is being done. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
+| [options.detail] | <code>string</code> | | Text shown between `text` and the progress bar element. Used to display the current status, i.e., what part of the whole process is being done. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
 | [options.style] | <code>object</code> |  | Visual styles for elements: `text`, `detail`, `bar` and `value`. All elements' properties are purely CSS, just the way it is used in a `CSS file`. |
 | [options.style.text] | <code>object</code> |  | An object containing any CSS properties for styling the `text` element. |
 | [options.style.detail] | <code>object</code> |  | An object containing any CSS properties for styling the `detail` element. |
 | [options.style.bar] | <code>object</code> | <code>{'width':'100%', 'background-color':'#BBE0F1'}</code> | An object containing any CSS properties for styling the `bar` in the progress bar. |
 | [options.style.value] | <code>object</code> | <code>{'background-color':'#0976A9'}</code> | An object containing any CSS properties for styling the `value` in the progress bar. |
 | [options.browserWindow] | <code>object</code> |  | [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few properties are used per default, you can specify any of [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). |
-| [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A BrowserWindow instance. If informed, the progress bar window will block its parent window so user can't interact with it until the progress bar is closed, i.e., completed or aborted. |
+| [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A [BrowserWindow instance](https://github.com/electron/electron/blob/master/docs/api/browser-window.md). If informed, the progress bar window will always show on top of the parent window and will block it so user can't interact with it until the progress bar is completed/aborted and closed. |
 | [options.browserWindow.modal] | <code>boolean</code> | <code>true</code> | Whether this is a modal window. This actually only works if progress bar window is a child window, i.e., when its `parent` is informed. |
 | [options.browserWindow.resizable] | <code>boolean</code> | <code>false</code> | Whether window is resizable. |
 | [options.browserWindow.closable] | <code>boolean</code> | <code>false</code> | Whether window is closable. |
@@ -172,7 +173,7 @@ Adds the listener function to the end of the listeners array for the event named
 
 Returns a reference to `this` so that calls can be chained.
 
-Available events:
+### Events
 
 | Event name | Receives parameter | Description |
 | --- | --- | --- |
