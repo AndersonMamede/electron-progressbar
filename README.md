@@ -9,7 +9,24 @@ You can customize windows (electron's BrowserWindow), progress bars' visual aspe
 
 [![NPM](https://nodei.co/npm/electron-progressbar.png?downloads=true&stars=true)](https://www.npmjs.com/package/electron-progressbar)
 
-Installation
+***
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Indeterminate progress bar](#indeterminate-progress-bar)
+  * [Determinate progress bar](#determinate-progress-bar)
+* [API](#api)
+    * [`.new ProgressBar(options, [electronApp])`]
+    * [`.getOptions()`] ⇒ <code>object</code>
+    * [`.on(eventName, listener)`] ⇒ <code>reference to this</code>
+    * [`.complete()`]
+    * [`.close()`]
+    * [`.isInProgress()`] ⇒ <code>boolean</code>
+    * [`.isCompleted()`] ⇒ <code>boolean</code>
+* [License](#license)
+
+## Installation
 ------------
 
 Install with `npm`:
@@ -18,7 +35,9 @@ Install with `npm`:
 $ npm install electron-progressbar --save
 ```
 
+## Usage
 
+### Indeterminate progress bar
 Example of an **indeterminate** progress bar - used when your application can't calculate how long the process will last
 -------
 
@@ -56,7 +75,7 @@ app.on("ready", function(){
 });
 ```
 
-
+### Determinate progress bar
 Example of a **determinate** progress bar - used when your application can accurately calculate how long the process will last
 -------
 
@@ -96,7 +115,7 @@ var interval = setInterval(function(){
 
 ## API
 
-#### `constructor(options [,electronApp])`
+##### `new ProgressBar(options, [electronApp])`
 
 Create a new progress bar. Because electron's BrowserWindow is used to display the progress bar and it only works after electron's "ready" event, you have wait for the "ready" event before creating a progress bar; optionally, you can just pass electron's app as a second parameter (`electronApp`).
 
@@ -126,11 +145,11 @@ Create a new progress bar. Because electron's BrowserWindow is used to display t
 | [options.browserWindow.width] | <code>number</code> | <code>450</code> | Progress bar window's width in pixels. |
 | [options.browserWindow.height] | <code>number</code> | <code>175</code> | Progress bar window's height in pixels. |
 
-#### `getOptions()` ⇒ <code>object</code>
+##### `getOptions()` ⇒ <code>object</code>
 
 Return a copy of all current options.
 
-#### `on(eventName, listener)` ⇒ <code>reference to this</code>
+##### `on(eventName, listener)` ⇒ <code>reference to this</code>
 
 Adds the listener function to the end of the listeners array for the event named `eventName`. No checks are made to see if the `listener` has already been added. Multiple calls passing the same combination of `eventName` and `listener` will result in the `listener` being added, and called, multiple times.
 
@@ -144,25 +163,25 @@ Available events:
 | completed | value | Fired when progress bar is completed, i.e., its value reaches `maxValue` or method `complete` is called. The listener receives, as first parameter, the current progress bar's value. |
 | aborted | value | Fired if progress bar is closed when it's not completed yet, i.e., when user closes progress bar window or method `close` is called before progress bar is completed. The listener receives, as first parameter, the current progress bar's value. |
 
-#### `complete()`
+##### `complete()`
 
 Set progress bar as complete. This means the whole process is finished.
 
 If progress bar is **indeterminate**, a manual call to this method is **required** because it's the only way to complete the process and trigger the `complete` event, otherwise the progress bar would be displayed forever.
 
-#### `close()`
+##### `close()`
 
 Close progress bar window. If progress bar is not completed yet, it'll be aborted and event `aborted` will be fired.
 
-#### `isInProgress()` ⇒ <code>boolean</code>
+##### `isInProgress()` ⇒ <code>boolean</code>
 
 Return true if progress bar is currently in progress, i.e., it hasn't been completed nor aborted yet, otherwise false.
 
-#### `isCompleted()` ⇒ <code>boolean</code>
+##### `isCompleted()` ⇒ <code>boolean</code>
 
 Return true if progress bar is completed, otherwise false.
 
 
-## License ##
+## License
 
 MIT. See [LICENSE.md](http://github.com/AndersonMamede/electron-progressbar/blob/master/LICENSE) for details.
