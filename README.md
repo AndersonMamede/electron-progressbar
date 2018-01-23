@@ -15,7 +15,7 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
 ## Table of Contents
 
 * [Installation](#installation)
-* [Example](#example)
+* [Examples](#examples)
   * [Indeterminate progress bar](#indeterminate-progress-bar)
   * [Determinate progress bar](#determinate-progress-bar)
   * [More examples](#more-examples)
@@ -25,10 +25,11 @@ You can customize window's aspects (electron's BrowserWindow), progress bars' vi
       * [`.getOptions()`](#getoptions--object) ⇒ <code>object</code>
       * [`.on(eventName, listener)`](#oneventname-listener--reference-to-this) ⇒ <code>reference to this</code>
         * [`Events`](#events)
+          * [`ready`](#event-ready)
           * [`progress`](#event-progress)
           * [`completed`](#event-completed)
           * [`aborted`](#event-aborted)
-      * [`.complete()`](#complete)
+      * [`.setCompleted()`](#setcomplete)
       * [`.close()`](#close)
       * [`.isInProgress()`](#isinprogress--boolean) ⇒ <code>boolean</code>
       * [`.isCompleted()`](#iscompleted--boolean) ⇒ <code>boolean</code>
@@ -46,13 +47,13 @@ Install with `npm`:
 $ npm install electron-progressbar --save
 ```
 
-## Example
+## Examples
 
 ### Indeterminate progress bar
 
-Example of an **indeterminate** progress bar - used when your application can't calculate how long the process will last:
+Example of an **indeterminate** progress bar - used when your application can't calculate how long the task will last:
 
-![Indeterminate progress bar](/example/indeterminate-progress-bar.gif)
+![Indeterminate progress bar](/examples/indeterminate-progress-bar.gif)
 
 ``` js
 const {app} = require('electron');
@@ -82,9 +83,9 @@ app.on('ready', function() {
 
 ### Determinate progress bar
 
-Example of a **determinate** progress bar - used when your application can accurately calculate how long the process will last:
+Example of a **determinate** progress bar - used when your application can accurately calculate how long the task will last:
 
-![Determinate progress bar](/example/determinate-progress-bar.gif)
+![Determinate progress bar](/examples/determinate-progress-bar.gif)
 
 ``` js
 const {app} = require('electron');
@@ -139,7 +140,7 @@ Create a new progress bar. Because [electron's BrowserWindow](https://github.com
 | [options.closeOnComplete] | <code>boolean</code> | <code>true</code> | Whether progress bar window should be automatically closed after completed. If false, the progress bar must be manually closed by calling its `close` method. |
 | [options.title] | <code>string</code> | <code>'Wait...'</code> | Text shown on title bar. |
 | [options.text] | <code>string</code> | <code>'Wait...'</code> | Text shown inside the window and above the progress bar. |
-| [options.detail] | <code>string</code> | | Text shown between `text` and the progress bar element. Used to display the current status, i.e., what part of the whole process is being done. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
+| [options.detail] | <code>string</code> | | Text shown between `text` and the progress bar element. Used to display the current status, i.e., what part of the whole task is being done. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
 | [options.style] | <code>object</code> |  | Visual styles for elements: `text`, `detail`, `bar` and `value`. All elements' properties are purely CSS, just the way it is used in a `CSS file`. |
 | [options.style.text] | <code>object</code> |  | An object containing any CSS properties for styling the `text` element. |
 | [options.style.detail] | <code>object</code> |  | An object containing any CSS properties for styling the `detail` element. |
@@ -173,17 +174,18 @@ Returns a reference to `this` so that calls can be chained.
 
 | Event name | Receives parameter | Description |
 | --- | --- | --- |
+| <a name="event-ready"></a>ready | | Fired when progress bar is created and ready to be used and controlled. |
 | <a name="event-progress"></a>progress | value | Available only for **determinate** progress bar. Fired every time the progress bar's value is changed. The listener receives, as first parameter, the current progress bar's value. |
 | <a name="event-completed"></a>completed | value | Fired when progress bar is completed, i.e., its value reaches `maxValue` or method `complete` is called. The listener receives, as first parameter, the current progress bar's value. |
 | <a name="event-aborted"></a>aborted | value | Fired if progress bar is closed when it's not completed yet, i.e., when user closes progress bar window or method `close` is called before progress bar is completed. The listener receives, as first parameter, the current progress bar's value. |
 
 * * *
 
-##### `complete()`
+##### `setCompleted()`
 
-Set progress bar as complete. This means the whole process is finished.
+Set progress bar as complete. This means the whole task is finished.
 
-If progress bar is **indeterminate**, a manual call to this method is **required** because it's the only way to complete the process and trigger the `complete` event, otherwise the progress bar would be displayed forever.
+If progress bar is **indeterminate**, a manual call to this method is **required** because it's the only way to complete the task and trigger the `complete` event, otherwise the progress bar would be displayed forever.
 
 * * *
 
@@ -221,7 +223,7 @@ Get or set the `text`. This information is shown inside the window and above the
 
 #### `detail` ⇒ <code>string</code>
 
-Get or set the `detail`. This information is shown between `text` and the progress bar element. Useful to display the current status in real time, i.e., what part of the whole process is being done, what is currently happening.
+Get or set the `detail`. This information is shown between `text` and the progress bar element. Useful to display the current status in real time, i.e., what part of the whole task is being done, what is currently happening.
 
 * * *
 
