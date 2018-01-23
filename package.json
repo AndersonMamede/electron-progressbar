@@ -1,0 +1,32 @@
+{
+  "name": "electron-progressbar",
+  "version": "1.0.0",
+  "description": "Progress bar for Electron applications",
+  "main": "source/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndersonMamede/electron-progressbar.git"
+  },
+  "keywords": [
+    "electron",
+    "progress",
+    "progressbar",
+    "loading",
+    "processing"
+  ],
+  "author": {
+    "name": "Anderson Mamede",
+    "email": "mamede.anderson@gmail.com",
+    "url": "http://andersonmamede.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndersonMamede/electron-progressbar/issues"
+  },
+  "homepage": "https://github.com/AndersonMamede/electron-progressbar",
+  "dependencies": {
+    "electron": "^1.7.5",
+    "extend": "^3.0.1"
+  },
+  "readmeFilename": "README.md"
+}

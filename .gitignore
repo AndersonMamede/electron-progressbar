@@ -1,0 +1,4 @@
+# .gitignore
+
+run.txt
+/.svn/*
