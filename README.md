@@ -1,8 +1,6 @@
 ![npm](https://img.shields.io/npm/dt/electron-progressbar.svg?style=flat-square)
 ![Hits](https://hitt.herokuapp.com/AndersonMamede/electron-progressbar.svg)
 
-THIS IS NOT YET AVAILABLE - it's going to be released in a few days from now 2018-01-23
-
 electron-progressbar
 ================
 > electron-progressbar provides an easy-to-use and highly customizable API to show and control progress bars on Electron applications.
