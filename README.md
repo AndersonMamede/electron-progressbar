@@ -64,15 +64,21 @@ app.on('ready', function() {
   });
   
   progressBar
-    .on('completed', function(value) {
-      console.info(`completed... ${value}`);
+    .on('completed', function() {
+      console.info(`completed...`);
+      progressBar.detail = 'Task completed. Exiting...';
     })
-    .on('aborted', function(value) {
-      console.info(`aborted... ${value}`);
+    .on('aborted', function() {
+      console.info(`aborted...`);
     });
   
+  // launch a task...
+  // launchTask();
+  
+  // when task is completed, set the progress bar to completed
+  // ps: setTimeout is used here just to simulate an interval between the start and the end of a task
   setTimeout(function() {
-    progressBar.complete();
+    progressBar.setCompleted();
   }, 3000);
 });
 ```
@@ -91,34 +97,35 @@ const ProgressBar = require('electron-progressbar');
 
 app.on('ready', function() {
   var progressBar = new ProgressBar({
-    closeOnComplete: false,
     indeterminate: false,
-    text: 'Preparing data...'
+    text: 'Preparing data...',
+    detail: 'Wait...'
   });
   
   progressBar
-    .on('progress', function(value) {
-      progressBar.detail = `Value ${value} of ${progressBar.getOptions().maxValue}...`;
-    })
-    .on('completed', function(value) {
-      clearInterval(interval);
-      progressBar.detail = 'Completed. Exiting...';
-      
-      setTimeout(function() {
-        progressBar.close();
-      }, 1500);
+    .on('completed', function() {
+      console.info(`completed...`);
+      progressBar.detail = 'Task completed. Exiting...';
     })
     .on('aborted', function(value) {
       console.info(`aborted... ${value}`);
+    })
+    .on('progress', function(value) {
+      progressBar.detail = `Value ${value} out of ${progressBar.getOptions().maxValue}...`;
     });
   
-  var interval = setInterval(function() {
-    progressBar.value += 1;
+  // launch a task and set the value of the progress bar each time a part of the task is done;
+  // the progress bar will be set as completed when it reaches its maxValue (default maxValue: 100);
+  // ps: setInterval is used here just to simulate a task being done
+  setInterval(function() {
+    if(!progressBar.isCompleted()){
+      progressBar.value += 1;
+    }
   }, 20);
 });
 ```
 
-<a name="more-examples"></a>More examples in [example folder](/example).
+<a name="more-examples"></a>More examples in [folder examples](/examples).
 
 ## API
 
