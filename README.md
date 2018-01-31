@@ -27,7 +27,7 @@ You can customize the aspects of the windows (electron's BrowserWindow), progres
           * [`progress`](#event-progress)
           * [`completed`](#event-completed)
           * [`aborted`](#event-aborted)
-      * [`.setCompleted()`](#setcomplete)
+      * [`.setCompleted()`](#setcompleted)
       * [`.close()`](#close)
       * [`.isInProgress()`](#isinprogress--boolean) ⇒ <code>boolean</code>
       * [`.isCompleted()`](#iscompleted--boolean) ⇒ <code>boolean</code>
