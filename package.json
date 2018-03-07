@@ -24,8 +24,10 @@
     "url": "https://github.com/AndersonMamede/electron-progressbar/issues"
   },
   "homepage": "https://github.com/AndersonMamede/electron-progressbar",
+  "devDependencies": {
+    "electron": "^1.7.5"
+  },
   "dependencies": {
-    "electron": "^1.7.5",
     "extend": "^3.0.1"
   },
   "readmeFilename": "README.md"
