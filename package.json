@@ -1,6 +1,6 @@
 {
   "name": "electron-progressbar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Progress bar component for Electron applications",
   "main": "source/index.js",
   "repository": {
