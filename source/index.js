@@ -121,6 +121,8 @@ class ProgressBar {
 		
 		this._window.webContents.send('SET_PROGRESS', this._realValue);
 		
+		this._updateTaskbarProgress();
+		
 		this._fire('progress', [this._realValue]);
 		
 		this._execWhenCompleted();
@@ -155,6 +157,8 @@ class ProgressBar {
 		if (!this._options.indeterminate) {
 			this._window.webContents.send('SET_PROGRESS', this._realValue);
 		}
+		
+		this._updateTaskbarProgress();
 		
 		this._execWhenCompleted();
 	}
@@ -254,6 +258,8 @@ class ProgressBar {
 			if (this._realValue < this._options.maxValue) {
 				this._fire('aborted', [this._realValue]);
 			}
+			
+			this._updateTaskbarProgress();
 		});
 		
 		this._window.loadURL(`file://${__dirname}/index.html`);
@@ -278,6 +284,40 @@ class ProgressBar {
 			
 			this._fire('ready');
 		});
+		
+		this._updateTaskbarProgress();
+	}
+	
+	_updateTaskbarProgress() {
+		let mainWindow;
+		
+		if (this._options.browserWindow && this._options.browserWindow.parent) {
+			mainWindow = this._options.browserWindow.parent;
+		} else {
+			mainWindow = this._window;
+		}
+		
+		if (!mainWindow || mainWindow.isDestroyed()) {
+			return;
+		}
+		
+		if (!this.isInProgress() || this.isCompleted()) {
+			// remove the progress bar from taskbar
+			return mainWindow.setProgressBar(-1);
+		}
+		
+		if (this._options.indeterminate) {
+			// any number above 1 turns the taskbar's progress bar indeterminate
+			mainWindow.setProgressBar(9);
+		} else {
+			const percentage = (this.value * 100) / this._options.maxValue;
+			
+			// taskbar's progress bar must be a number between 0 and 1, e.g.:
+			// 63% should be 0.63, 99% should be 0.99...
+			const taskbarProgressValue = percentage / 100;
+			
+			mainWindow.setProgressBar(taskbarProgressValue);
+		}
 	}
 	
 	_execWhenCompleted() {
@@ -288,6 +328,8 @@ class ProgressBar {
 		this._inProgress = false;
 		
 		this._window.webContents.send('SET_COMPLETED');
+		
+		this._updateTaskbarProgress();
 		
 		this._fire('completed', [this._realValue]);
 		

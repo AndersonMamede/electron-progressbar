@@ -9,6 +9,23 @@ You can customize the aspects of the windows (electron's BrowserWindow), progres
 
 [![NPM](https://nodei.co/npm/electron-progressbar.png?downloads=true&stars=true)](https://www.npmjs.com/package/electron-progressbar)
 
+## Demo
+
+[Indeterminate progress bar:](#indeterminate-progress-bar)<br>
+![Indeterminate progress bar](/examples/indeterminate-progress-bar.gif)
+
+[Determinate progress bar:](#determinate-progress-bar)<br>
+![Determinate progress bar](/examples/determinate-progress-bar.gif)
+<br>
+<br>
+Additionally, as of electron-progressbar v1.1.0, a progress bar is automatically added on the taskbar (through BrowserWindow's [setProgressBar] (https://github.com/electron/electron/blob/master/docs/tutorial/progress-bar.md#progress-bar-in-taskbar-windows-macos-unity)). This enables a window to provide progress information to the user without the user having to switch to the window itself.
+
+taskbar for indeterminate progress bar:<br>
+![Taskbar for indeterminate progress bar](/examples/taskbar-indeterminate-progress-bar.gif)
+
+taskbar for determinate progress bar:<br>
+![Taskbar for determinate progress bar](/examples/taskbar-determinate-progress-bar.gif)
+
 ***
 ## Table of Contents
 
