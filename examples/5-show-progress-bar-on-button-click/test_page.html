@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test page</title>
+  </head>
+  <body>
+    <div style="text-align:center">
+      <br>Test page<br><br>
+      <button id="show-progressbar">Show progressbar</button>
+    </div>
+    <script>
+      const ipc = require('electron').ipcRenderer;
+      
+      document.querySelector('#show-progressbar').addEventListener('click', function(){
+        ipc.send('show-progressbar');
+        
+        setTimeout(function(){
+          ipc.send('set-progressbar-completed');
+        }, 5000);
+      });
+    </script>
+  </body>
+</html>
