@@ -8,11 +8,13 @@ app.on('ready', function() {
 	});
 	
 	var progressBar = new ProgressBar({
-		text: 'Preparing data...',
-		detail: 'Wait...',
 		browserWindow: {
-			parent: mainWindow
-		}
+			text: 'Preparing data...',
+			detail: 'Wait...',
+			webPreferences: {
+				nodeIntegration: true
+			}
+        }
 	});
 	
 	progressBar
