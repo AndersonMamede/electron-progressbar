@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/AndersonMamede/electron-progressbar",
   "devDependencies": {
-    "electron": "^1.7.5"
+    "electron": "^9.1.0"
   },
   "dependencies": {
     "extend": "^3.0.1"
