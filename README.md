@@ -52,6 +52,7 @@ taskbar for determinate progress bar:<br>
       * [`value`](#value--number) ⇒ number
       * [`text`](#text--string) ⇒ string
       * [`detail`](#detail--string) ⇒ string
+* [Changelog](#changelog)
 * [License](#license)
 
 ## Installation
@@ -248,6 +249,10 @@ Get or set the `text`. This information is shown inside the window and above the
 Get or set the `detail`. This information is shown between `text` and the progress bar element. Useful to display the current status in real time, i.e., what part of the whole task is being done, what is currently happening.
 
 * * *
+
+## Changelog
+
+[Changelog](/CHANGELOG.md)
 
 ## License
 
