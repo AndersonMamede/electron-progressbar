@@ -6,7 +6,7 @@ app.on('ready', function() {
 		text: 'Preparing data...',
 		detail: 'Wait...',
 		style: { // the keys are all elements of the progress bar
-			text: { // pair of CSSS properties/values
+			text: { // pair of CSS properties/values
 				'font-weight': 'bold',
 				'color': '#B11C11'
 			},
