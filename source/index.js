@@ -44,8 +44,8 @@ class ProgressBar {
 					nodeIntegration: true
 				},
 			},
-
-            remoteWindow: null
+			
+			remoteWindow: null
 		};
 		
 		this._styleSelector = {
@@ -248,7 +248,7 @@ class ProgressBar {
 	}
 	
 	_createWindow() {
-	  	if (this._options.remoteWindow) {
+		if (this._options.remoteWindow) {
 			this._window = new this._options.remoteWindow(this._options.browserWindow);
 		} else {
 			this._window = new BrowserWindow(this._options.browserWindow);
