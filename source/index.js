@@ -40,7 +40,9 @@ class ProgressBar {
 				maximizable: false,
 				width: 500,
 				height: 170
-			}
+			},
+
+      		remoteWindow: null
 		};
 		
 		this._styleSelector = {
@@ -243,8 +245,12 @@ class ProgressBar {
 	}
 	
 	_createWindow() {
-		this._window = new BrowserWindow(this._options.browserWindow);
-		
+	  	if (this._options.remoteWindow) {
+			this._window = new this._options.remoteWindow(this._options.browserWindow);
+		} else {
+			this._window = new BrowserWindow(this._options.browserWindow);
+		}
+
 		this._window.setMenu(null);
 		
 		if(this._options.debug){
