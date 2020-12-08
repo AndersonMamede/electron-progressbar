@@ -1,5 +1,4 @@
-![npm](https://img.shields.io/npm/dt/electron-progressbar.svg?style=flat-square)
-![Hits](https://hitt.herokuapp.com/AndersonMamede/electron-progressbar.svg)
+![npm](https://img.shields.io/npm/dt/electron-progressbar?label=installs&style=flat-square)
 
 electron-progressbar
 ================
