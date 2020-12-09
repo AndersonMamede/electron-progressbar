@@ -17,7 +17,7 @@ You can customize the aspects of the windows (electron's BrowserWindow), progres
 ![Determinate progress bar](/examples/determinate-progress-bar.gif)
 <br>
 <br>
-Additionally, as of electron-progressbar v1.1.0, a progress bar is automatically added to the taskbar (through BrowserWindow's [setProgressBar](https://github.com/electron/electron/blob/master/docs/tutorial/progress-bar.md#progress-bar-in-taskbar-windows-macos-unity)). This enables a window to provide progress information to the user without the user having to switch to the window itself.
+Additionally, a progress bar is also displayed in the taskbar (through BrowserWindow's [setProgressBar](https://github.com/electron/electron/blob/master/docs/tutorial/progress-bar.md#progress-bar-in-taskbar-windows-macos-unity)). This enables a window to provide progress information to the user without the user having to switch to the window itself.
 
 taskbar for indeterminate progress bar:<br>
 ![Taskbar for indeterminate progress bar](/examples/taskbar-indeterminate-progress-bar.gif)
@@ -93,7 +93,8 @@ app.on('ready', function() {
   // launchTask();
   
   // when task is completed, set the progress bar to completed
-  // ps: setTimeout is used here just to simulate an interval between the start and the end of a task
+  // ps: setTimeout is used here just to simulate an interval between
+  // the start and the end of a task
   setTimeout(function() {
     progressBar.setCompleted();
   }, 3000);
@@ -131,9 +132,9 @@ app.on('ready', function() {
       progressBar.detail = `Value ${value} out of ${progressBar.getOptions().maxValue}...`;
     });
   
-  // launch a task and set the value of the progress bar each time a part of the task is done;
-  // the progress bar will be set as completed when it reaches its maxValue (default maxValue: 100);
-  // ps: setInterval is used here just to simulate a task being done
+  // launch a task and increase the value of the progress bar for each step completed of a big task;
+  // the progress bar is set to completed when it reaches its maxValue (default maxValue: 100);
+  // ps: setInterval is used here just to simulate the progress of a task
   setInterval(function() {
     if(!progressBar.isCompleted()){
       progressBar.value += 1;
@@ -142,7 +143,7 @@ app.on('ready', function() {
 });
 ```
 
-<a name="more-examples"></a>More examples in [folder examples](/examples).
+<a name="more-examples"></a>More examples are available in [folder examples](/examples).
 
 ## API
 
@@ -158,17 +159,18 @@ Create a new progress bar. Because [electron's BrowserWindow](https://github.com
 | [options.abortOnError] | <code>boolean</code> | <code>false</code> | Whether progress bar should abort and close if an error occurs internally. |
 | [options.indeterminate] | <code>boolean</code> | <code>true</code> | Whether progress bar should be **indeterminate**. If false, progress bar will be **determinate**. |
 | [options.initialValue] | <code>number</code> | <code>0</code> | Progress bar's initial value. _Used only for determinate progress bar._ |
-| [options.maxValue] | <code>number</code> | <code>100</code> | Progress bar's maximum value. When progress bar's value reaches this number, it will be set as completed and event `complete` will be fired. _Used only for determinate progress bar._ |
+| [options.maxValue] | <code>number</code> | <code>100</code> | Progress bar's maximum value. When progress bar's value reaches this number, it will be set to completed and event `complete` will be fired. _Used only for determinate progress bar._ |
 | [options.closeOnComplete] | <code>boolean</code> | <code>true</code> | Whether progress bar window should be automatically closed after completed. If false, the progress bar must be manually closed by calling its `close` method. |
 | [options.title] | <code>string</code> | <code>'Wait...'</code> | Text shown on title bar. |
 | [options.text] | <code>string</code> | <code>'Wait...'</code> | Text shown inside the window and above the progress bar. |
-| [options.detail] | <code>string</code> | | Text shown between `text` and the progress bar element. Used to display the current status, i.e., what part of the whole task is being done. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
-| [options.style] | <code>object</code> |  | Visual styles for elements: `text`, `detail`, `bar` and `value`. All elements' properties are purely CSS, just the way it is used in a `CSS file`. |
+| [options.detail] | <code>string</code> | | Text shown between `text` and the progress bar element. Can be used to display detailed information, e.g., the current step of a task. Usually setting this property later is more useful because your application can determine and display, in real time, what is currently happening. |
+| [options.style] | <code>object</code> |  | Visual styles for elements: `text`, `detail`, `bar` and `value`. All elements properties are purely CSS, just the way it is used in a `CSS file`. |
 | [options.style.text] | <code>object</code> |  | An object containing any CSS properties for styling the `text` element. |
 | [options.style.detail] | <code>object</code> |  | An object containing any CSS properties for styling the `detail` element. |
 | [options.style.bar] | <code>object</code> | <code>{'width':'100%', 'background-color':'#BBE0F1'}</code> | An object containing any CSS properties for styling the `bar` in the progress bar. |
 | [options.style.value] | <code>object</code> | <code>{'background-color':'#0976A9'}</code> | An object containing any CSS properties for styling the `value` in the progress bar. |
-| [options.browserWindow] | <code>object</code> |  | [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few properties are used per default, you can specify any of [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). |
+| [options.remoteWindow] | <code>instance of BrowserWindow</code> | <code>null</code> | The BrowserWindow to use for the progress bar. When null/empty, a new BrowserWindow will be created. By default, a new BrowserWindow is created, unless this option is specified. |
+| [options.browserWindow] | <code>object</code> |  | [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few options are set by default, you can specify any of [`Electron's BrowserWindow options`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). |
 | [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A [BrowserWindow instance](https://github.com/electron/electron/blob/master/docs/api/browser-window.md). If informed, the progress bar window will always show on top of the parent window and will block it so user can't interact with it until the progress bar is completed/aborted and closed. |
 | [options.browserWindow.modal] | <code>boolean</code> | <code>true</code> | Whether this is a modal window. This actually only works if progress bar window is a child window, i.e., when its `parent` is informed. |
 | [options.browserWindow.resizable] | <code>boolean</code> | <code>false</code> | Whether window is resizable. |
@@ -177,6 +179,7 @@ Create a new progress bar. Because [electron's BrowserWindow](https://github.com
 | [options.browserWindow.maximizable] | <code>boolean</code> | <code>false</code> | Whether window is maximizable. |
 | [options.browserWindow.width] | <code>number</code> | <code>450</code> | Progress bar window's width in pixels. |
 | [options.browserWindow.height] | <code>number</code> | <code>175</code> | Progress bar window's height in pixels. |
+| [options.browserWindow.webPreferences.nodeIntegration] | <code>boolean</code> | <code>true</code> | Whether node integration is enabled. |
 
 * * *
 
@@ -188,7 +191,7 @@ Return a copy of all current options.
 
 ##### `on(eventName, listener)` ⇒ <code>reference to this</code>
 
-Adds the listener function to the end of the listeners array for the event named `eventName`. No checks are made to see if the `listener` has already been added. Multiple calls passing the same combination of `eventName` and `listener` will result in the `listener` being added, and called, multiple times.
+Adds the listener function to the end of the listeners array for the event named `eventName`. No checks are made to see if the `listener` has already been added. Multiple calls passing the same combination of `eventName` and `listener` will result in the `listener` being added and called multiple times.
 
 Returns a reference to `this` so that calls can be chained.
 
@@ -245,7 +248,7 @@ Get or set the `text`. This information is shown inside the window and above the
 
 #### `detail` ⇒ <code>string</code>
 
-Get or set the `detail`. This information is shown between `text` and the progress bar element. Useful to display the current status in real time, i.e., what part of the whole task is being done, what is currently happening.
+Get or set the `detail`. This information is shown between `text` and the progress bar element. Useful to display any detailed information, e.g., the current status in real time or the current step of the task.
 
 * * *
 
