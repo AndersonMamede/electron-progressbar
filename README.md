@@ -59,7 +59,7 @@ taskbar for determinate progress bar:<br>
 Install with `npm`:
 
 ``` bash
-$ npm install electron-progressbar --save
+$ npm i electron-progressbar
 ```
 
 ## Examples
