@@ -180,6 +180,7 @@ Create a new progress bar. Because [electron's BrowserWindow](https://github.com
 | [options.browserWindow.width] | <code>number</code> | <code>450</code> | Progress bar window's width in pixels. |
 | [options.browserWindow.height] | <code>number</code> | <code>175</code> | Progress bar window's height in pixels. |
 | [options.browserWindow<br>.webPreferences.nodeIntegration] | <code>boolean</code> | <code>true</code> | Whether node integration is enabled. |
+| [options.browserWindow<br>.webPreferences.contextIsolation] | <code>boolean</code> | <code>false</code> | Whether contextIsolation is enabled or not. |
 
 * * *
 
