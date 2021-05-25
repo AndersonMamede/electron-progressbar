@@ -43,7 +43,6 @@ class ProgressBar {
 				webPreferences: {
 					nodeIntegration: true,
 					contextIsolation: false,
-					enableRemoteModule: true,
 				},
 			},
 			
