@@ -18,6 +18,7 @@ class ProgressBar {
 			title: 'Wait...',
 			text: 'Wait...',
 			detail: null,
+			lang: 'en-us',
 			
 			style: {
 				text: {},
@@ -272,7 +273,7 @@ class ProgressBar {
 			this._updateTaskbarProgress();
 		});
 		
-		this._window.loadURL('data:text/html;charset=UTF8,' + encodeURIComponent(htmlContent));
+		this._window.loadURL('data:text/html;charset=UTF8,' + encodeURIComponent(htmlContent.replace('{{REPLACE:LANG}}', this._options.lang)));
 		
 		this._window.webContents.on('did-finish-load', () => {
 			if (this._options.text !== null) {
@@ -352,7 +353,7 @@ class ProgressBar {
 
 const htmlContent = `
 <!DOCTYPE html>
-<html>
+<html lang={{REPLACE:LANG}}>
 	<head>
 		<meta charset="UTF-8">
 		<style>
