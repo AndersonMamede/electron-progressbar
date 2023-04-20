@@ -528,13 +528,14 @@ const htmlContent = `
 					elements.progressBarContainer.appendChild(elements.progressBar);
 				}
 				
+				elements.text.innerHTML = currentValue.text;
+				elements.detail.innerHTML = currentValue.detail;
+				
 				window.requestAnimationFrame(synchronizeUi);
 			}
 			
 			function synchronizeUi(){
 				elements.progressBar.value = currentValue.progress;
-				elements.text.innerHTML = currentValue.text;
-				elements.detail.innerHTML = currentValue.detail;
 				window.requestAnimationFrame(synchronizeUi);
 			}
 			
