@@ -1,4 +1,15 @@
-![npm](https://img.shields.io/npm/dt/electron-progressbar?label=installs&style=flat-square)
+[![NPM downloads][npm-downloads]][npm-url]
+[![NPM total downloads][npm-total-downloads]][npm-url]
+
+| &nbsp;<br>[![Donate][donate-badge]][donate-url] <br>&nbsp; | Your help is appreciated! [Create a PR][create-pr] or just [buy me a coffee][donate-url] |
+|-|-|
+
+[npm-url]: https://www.npmjs.com/package/electron-progressbar
+[npm-downloads]: https://img.shields.io/npm/dm/electron-progressbar.svg
+[npm-total-downloads]: https://img.shields.io/npm/dt/electron-progressbar.svg?label=total+downloads
+[donate-badge]: https://img.shields.io/badge/Buy%20me%20a%20coffee-Donate-red.svg
+[donate-url]: https://github.com/sponsors/AndersonMamede
+[create-pr]: https://github.com/AndersonMamede/electron-progressbar/pulls
 
 electron-progressbar
 ================
