@@ -13,9 +13,9 @@
 
 electron-progressbar
 ================
-> electron-progressbar provides an easy-to-use and highly customizable API to show and control progress bars on Electron applications.
+> electron-progressbar provides an easy-to-use and highly customizable API, to show and manipulate progress bars on Electron applications.
 
-You can customize the aspects of the windows (electron's BrowserWindow), progress bars' visual aspects (CSS), texts and also all visible information.
+With electron-progressbar, you can easily customize the appearance of the progress bars, including the visual aspects using CSS, as well as the text and any other visible information. Additionally, the library allows for customization of the Electron BrowserWindow that contains the progress bars.
 
 [![NPM](https://nodei.co/npm/electron-progressbar.png?downloads=true&stars=true)](https://www.npmjs.com/package/electron-progressbar)
 
@@ -28,12 +28,12 @@ You can customize the aspects of the windows (electron's BrowserWindow), progres
 ![Determinate progress bar](/examples/determinate-progress-bar.gif)
 <br>
 <br>
-Additionally, a progress bar is also displayed in the taskbar (through BrowserWindow's [setProgressBar](https://github.com/electron/electron/blob/master/docs/tutorial/progress-bar.md#progress-bar-in-taskbar-windows-macos-unity)). This enables a window to provide progress information to the user without the user having to switch to the window itself.
+In addition to displaying progress bars within the window, electron-progressbar also enables progress bars to be displayed in the taskbar using the [BrowserWindow's setProgressBar method](https://github.com/electron/electron/blob/master/docs/tutorial/progress-bar.md#progress-bar-in-taskbar-windows-macos-unity). This feature allows the user to view progress information without needing to switch to the window itself.
 
-taskbar for indeterminate progress bar:<br>
+example of the taskbar for an **indeterminate progress bar**:<br>
 ![Taskbar for indeterminate progress bar](/examples/taskbar-indeterminate-progress-bar.gif)
 
-taskbar for determinate progress bar:<br>
+example of the taskbar for a **determinate progress bar**:<br>
 ![Taskbar for determinate progress bar](/examples/taskbar-determinate-progress-bar.gif)
 
 ***
@@ -77,7 +77,7 @@ $ npm i electron-progressbar
 
 ### Indeterminate progress bar
 
-Example of an **indeterminate** progress bar - used when your application can't calculate how long the task will last:
+Example of an **indeterminate** progress bar - this progress bar is useful when your application cannot calculate how long the task will take to complete:
 
 ![Indeterminate progress bar](/examples/indeterminate-progress-bar.gif)
 
@@ -116,7 +116,7 @@ app.on('ready', function() {
 
 ### Determinate progress bar
 
-Example of a **determinate** progress bar - used when your application can accurately calculate how long the task will last:
+Example of a **determinate** progress bar - this progress bar is useful when your application can accurately calculate how long the task will take to complete:
 
 ![Determinate progress bar](/examples/determinate-progress-bar.gif)
 
@@ -162,7 +162,9 @@ app.on('ready', function() {
 
 ##### `new ProgressBar(options, [electronApp])`
 
-Create a new progress bar. Because [electron's BrowserWindow](https://github.com/electron/electron/blob/master/docs/api/browser-window.md) is used to display the progress bar and it only works after [electron's "ready" event](https://github.com/electron/electron/blob/master/docs/api/app.md#event-ready), you have wait for the "ready" event before creating a progress bar; optionally, you can just pass electron's app as a second parameter (`electronApp`).
+Create a new progress bar. It's necessary to wait for the `ready` event to be emitted by [Electron's BrowserWindow](https://github.com/electron/electron/blob/master/docs/api/browser-window.md), since the progress bar is displayed within it. Optionally, you can pass the electron app as a second parameter (parameter `electronApp`) when creating the progress bar.
+
+You can define most of the characteristics of the progress bar using the `options` parameter. Below is a list of properties that you can set for the `options` parameter:
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
