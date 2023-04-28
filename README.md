@@ -162,9 +162,9 @@ app.on('ready', function() {
 
 ##### `new ProgressBar(options, [electronApp])`
 
-Create a new progress bar. It's necessary to wait for the [`ready` event](https://github.com/electron/electron/blob/master/docs/api/app.md#event-ready) to be emitted by [Electron's BrowserWindow](https://github.com/electron/electron/blob/master/docs/api/browser-window.md), since the progress bar is displayed within it. Optionally, you can pass the electron app as a second parameter (parameter `electronApp`) when creating the progress bar.
+Create a new progress bar. It's necessary to wait for the [`ready` event](https://github.com/electron/electron/blob/master/docs/api/app.md#event-ready) to be emitted by [Electron's BrowserWindow](https://github.com/electron/electron/blob/master/docs/api/browser-window.md), since the progress bar is displayed within it. Optionally, you can pass the electron app as a second parameter (parameter `electronApp`) when creating the progress bar. Check the sample code on this page for detailed examples on how to set properties to `options`.
 
-You can define most of the characteristics of the progress bar using the `options` parameter. Below is a list of properties that you can set for the `options` parameter:
+You can define most of the characteristics of the progress bar using the `options` parameter. Below is a list of properties that you can set for the `options` parameter.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
