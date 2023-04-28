@@ -10,7 +10,7 @@ app.on('ready', function() {
 	progressBar
 		.on('completed', function() {
 			console.info(`completed...`);
-			progressBar.detail = 'Task completed. Exiting...';
+			progressBar.detail = 'Task completed. Closing...';
 		})
 		.on('aborted', function() {
 			console.info(`aborted...`);
