@@ -215,9 +215,9 @@ P.S.: there are no checks to verify if `listener` has already been added. If you
 | Event name | Receives parameter | Description |
 | --- | --- | --- |
 | <a name="event-ready"></a>ready | _none_ | This event is fired when the progress bar has been created and is ready to be used and manipulated. |
-| <a name="event-progress"></a>progress | value | This event is available only for **determinate** progress bars. It is fired every time the progress bar's value is changed. The listener receives, as its first parameter, the current value of the progress bar. |
-| <a name="event-completed"></a>completed | value | This event is fired when the progress bar is completed, i.e., its value reaches `maxValue` or the `complete` method is called. The listener receives, as its first parameter, the current value of the progress bar. |
-| <a name="event-aborted"></a>aborted | value | This event is fired if the progress bar is closed before it's completed, i.e., when user closes the progress bar window or the `close` method is called before the progress bar reaches completion. The listener receives, as its first parameter, the current value of the progress bar. |
+| <a name="event-progress"></a>progress | `value` | This event is available only for **determinate** progress bars. It is fired every time the progress bar's value is changed. The listener receives, as its first parameter, the current value of the progress bar. |
+| <a name="event-completed"></a>completed | `value` | This event is fired when the progress bar is completed, i.e., its value reaches `maxValue` or the `complete` method is called. The listener receives, as its first parameter, the current value of the progress bar. |
+| <a name="event-aborted"></a>aborted | `value` | This event is fired if the progress bar is closed before it's completed, i.e., when user closes the progress bar window or the `close` method is called before the progress bar reaches completion. The listener receives, as its first parameter, the current value of the progress bar. |
 
 * * *
 
