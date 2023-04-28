@@ -168,6 +168,7 @@ You can define most of the characteristics of the progress bar using the `option
 
 | Option name | Type | Default value | Description |
 | --- | --- | --- | --- |
+| debug | <code>boolean</code> | <code>false</code> | Specifies whether debugging should be enabled. If set to `true`, the browser's DevTools panel will automatically open when the progress bar is created. This can be helpful when debugging and/or dealing with issues. |
 | abortOnError | <code>boolean</code> | <code>false</code> | Specifies whether the progress bar should automatically abort and close if an error occurs internally. |
 | indeterminate | <code>boolean</code> | <code>true</code> | Specifies whether the progress bar should be **indeterminate**. If set to false, the progress bar will be **determinate**. |
 | initialValue | <code>number</code> | <code>0</code> | The initial value for the progress bar. _This parameter is only applicable for **determinate** progress bars._ |
