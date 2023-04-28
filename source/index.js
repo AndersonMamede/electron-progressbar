@@ -264,13 +264,14 @@ class ProgressBar {
 		
 		this._window.on('closed', () => {
 			this._inProgress = false;
-			this._window = null;
 			
 			if (this._realValue < this._options.maxValue) {
 				this._fire('aborted', [this._realValue]);
 			}
 			
 			this._updateTaskbarProgress();
+			
+			this._window = null;
 		});
 		
 		const langAttribute = this._options.lang ? `lang="${this._options.lang}"` : "";
