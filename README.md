@@ -166,34 +166,33 @@ Create a new progress bar. It's necessary to wait for the [`ready` event](https:
 
 You can define most of the characteristics of the progress bar using the `options` parameter. Below is a list of properties that you can set for the `options` parameter.
 
-| Param | Type | Default | Description |
+| Option name | Type | Default value | Description |
 | --- | --- | --- | --- |
-| [options] | <code>object</code> |  | electron-progressbar options |
-| [options.abortOnError] | <code>boolean</code> | <code>false</code> | Specifies whether the progress bar should automatically abort and close if an error occurs internally. |
-| [options.indeterminate] | <code>boolean</code> | <code>true</code> | Specifies whether the progress bar should be **indeterminate**. If set to false, the progress bar will be **determinate**. |
-| [options.initialValue] | <code>number</code> | <code>0</code> | The initial value for the progress bar. _This parameter is only applicable for **determinate** progress bars._ |
-| [options.maxValue] | <code>number</code> | <code>100</code> | The maximum value for the progress bar. When the progress bar's value reaches this number, the progress bar will be considered complete and the `complete` event will be fired. _This parameter is only applicable for **determinate** progress bars._ |
-| [options.closeOnComplete] | <code>boolean</code> | <code>true</code> | Specifies whether the progress bar window should be automatically closed after the progress bar completes. If set to `false`, the progress bar will remain visible until the `close` method is called by your application. |
-| [options.title] | <code>string</code> | <code>'Wait...'</code> | Specifies the text shown on the progress bar window's title bar. |
-| [options.text] | <code>string</code> | <code>'Wait...'</code> | Specifies the text shown inside the progress bar window, next to the progress bar. |
-| [options.detail] | <code>string</code> | | Specifies the text shown between `text` and the progress bar element. It can be used to display detailed information, such as the current progress of a task. When used for this purpose, it is usually more useful to set this property later so that your application can calculate and display, in real time, the current progress of the task. |
-| [options.style] | <code>object</code> |  | Specifices the visual styles for the `text`, `detail`, `bar`, and `value` elements. All properties and values are pure CSS format, in the exact same way they would be used in a `CSS file`. |
-| [options.style.text] | <code>object</code> | "Wait..." | An object containing CSS properties for styling the `text` element. |
-| [options.style.detail] | <code>object</code> | "Wait..." | An object containing CSS properties for styling the `detail` element. |
-| [options.style.bar] | <code>object</code> | <code>{'width':'100%', 'background-color':'#BBE0F1'}</code> | An object containing CSS properties for styling the `bar` element of the progress bar. |
-| [options.style.value] | <code>object</code> | <code>{'background-color':'#0976A9'}</code> | An object containing CSS properties for styling the `value` element in the progress bar. |
-| [options.remoteWindow] | <code>instance of BrowserWindow</code> | <code>null</code> | Specifies the BrowserWindow where the progress bar will be displayed. If null/undefined/empty or not specified, a new BrowserWindow will be created to show the progress bar. |
-| [options.browserWindow] | <code>object</code> |  | Specifies the options for [`Electron's BrowserWindow`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Although only a few options are set by default, you can specify any of [Electron's BrowserWindow options](https://github.com/electron/electron/blob/main/docs/api/browser-window.md#new-browserwindowoptions).
-| [options.browserWindow.parent] | <code>instance of BrowserWindow</code> | <code>null</code> | A [BrowserWindow instance](https://github.com/electron/electron/blob/master/docs/api/browser-window.md) to be used as the parent of the progress bar's window. If specified, the progress bar window will always be on top of the given parent window and will block user interaction in parent window until the progress bar is completed (or aborted) and closed. |
+| abortOnError | <code>boolean</code> | <code>false</code> | Specifies whether the progress bar should automatically abort and close if an error occurs internally. |
+| indeterminate | <code>boolean</code> | <code>true</code> | Specifies whether the progress bar should be **indeterminate**. If set to false, the progress bar will be **determinate**. |
+| initialValue | <code>number</code> | <code>0</code> | The initial value for the progress bar. _This parameter is only applicable for **determinate** progress bars._ |
+| maxValue | <code>number</code> | <code>100</code> | The maximum value for the progress bar. When the progress bar's value reaches this number, the progress bar will be considered complete and the `complete` event will be fired. _This parameter is only applicable for **determinate** progress bars._ |
+| closeOnComplete | <code>boolean</code> | <code>true</code> | Specifies whether the progress bar window should be automatically closed after the progress bar completes. If set to `false`, the progress bar will remain visible until the `close` method is called by your application. |
+| title | <code>string</code> | <code>'Wait...'</code> | Specifies the text shown on the progress bar window's title bar. |
+| text | <code>string</code> | <code>'Wait...'</code> | Specifies the text shown inside the progress bar window, next to the progress bar. |
+| detail | <code>string</code> | | Specifies the text shown between `text` and the progress bar element. It can be used to display detailed information, such as the current progress of a task. When used for this purpose, it is usually more useful to set this property later so that your application can calculate and display, in real time, the current progress of the task. |
+| style | <code>object</code> |  | Specifices the visual styles for the `text`, `detail`, `bar`, and `value` elements. All properties and values are pure CSS format, in the exact same way they would be used in a `CSS file`. Check the options for `style` below. |
+| style.text | <code>object</code> | "Wait..." | An object containing CSS properties for styling the `text` element. |
+| style.detail | <code>object</code> | "Wait..." | An object containing CSS properties for styling the `detail` element. |
+| style.bar | <code>object</code> | <code>{'width':'100%', 'background-color':'#BBE0F1'}</code> | An object containing CSS properties for styling the `bar` element of the progress bar. |
+| style.value | <code>object</code> | <code>{'background-color':'#0976A9'}</code> | An object containing CSS properties for styling the `value` element in the progress bar. |
+| remoteWindow | <code>instance of BrowserWindow</code> | <code>null</code> | Specifies the BrowserWindow where the progress bar will be displayed. If null/undefined/empty or not specified, a new BrowserWindow will be created to show the progress bar. |
+| browserWindow | <code>object</code> |  | Specifies the options for [`Electron's BrowserWindow`](https://github.com/electron/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions). Check the options for `browserWindow` below. P.S.: although only a few options are set by default, you can specify any of [Electron's BrowserWindow options](https://github.com/electron/electron/blob/main/docs/api/browser-window.md#new-browserwindowoptions).
+| browserWindow.parent | <code>instance of BrowserWindow</code> | <code>null</code> | A [BrowserWindow instance](https://github.com/electron/electron/blob/master/docs/api/browser-window.md) to be used as the parent of the progress bar's window. If specified, the progress bar window will always be on top of the given parent window and will block user interaction in parent window until the progress bar is completed (or aborted) and closed. |
 | [options.browserWindow.modal] | <code>boolean</code> | <code>true</code> | Specifies whether the progress bar's window is a modal window. Note that this property only works when the progress bar's window is a child window, i.e., when `browserWindow.parent` is specified. |
-| [options.browserWindow.resizable] | <code>boolean</code> | <code>false</code> | Specifies whether the user can resize the progress bar's window. |
-| [options.browserWindow.closable] | <code>boolean</code> | <code>false</code> | Specifies whether the user can close the progress bar's window. |
-| [options.browserWindow.minimizable] | <code>boolean</code> | <code>false</code> | Specifies whether the user can minimize the progress bar's window. |
-| [options.browserWindow.maximizable] | <code>boolean</code> | <code>false</code> | Specifies whether the user can maximize the progress bar's window. |
-| [options.browserWindow.width] | <code>number</code> | <code>450</code> | Specifies the width of the progress bar's window in pixels. Only numeric values are accepted, for example: 600. |
-| [options.browserWindow.height] | <code>number</code> | <code>175</code> | Specifies the height of the progress bar's window in pixels. Only numeric values are accepted, for example: 600. |
-| [options.browserWindow<br>.webPreferences.nodeIntegration] | <code>boolean</code> | <code>true</code> | Specifies whether node integration is enabled. |
-| [options.browserWindow<br>.webPreferences.contextIsolation] | <code>boolean</code> | <code>false</code> | Specifies whether contextIsolation is enabled. |
+| browserWindow.resizable | <code>boolean</code> | <code>false</code> | Specifies whether the user can resize the progress bar's window. |
+| browserWindow.closable | <code>boolean</code> | <code>false</code> | Specifies whether the user can close the progress bar's window. |
+| browserWindow.minimizable | <code>boolean</code> | <code>false</code> | Specifies whether the user can minimize the progress bar's window. |
+| browserWindow.maximizable | <code>boolean</code> | <code>false</code> | Specifies whether the user can maximize the progress bar's window. |
+| browserWindow.width | <code>number</code> | <code>450</code> | Specifies the width of the progress bar's window in pixels. Only numeric values are accepted, for example: 600. |
+| browserWindow.height | <code>number</code> | <code>175</code> | Specifies the height of the progress bar's window in pixels. Only numeric values are accepted, for example: 600. |
+| browserWindow<br>.webPreferences.nodeIntegration | <code>boolean</code> | <code>true</code> | Specifies whether node integration is enabled. |
+| browserWindow<br>.webPreferences.contextIsolation | <code>boolean</code> | <code>false</code> | Specifies whether contextIsolation is enabled. |
 
 * * *
 
