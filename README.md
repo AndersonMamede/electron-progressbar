@@ -173,9 +173,10 @@ You can define most of the characteristics of the progress bar using the `option
 | initialValue | <code>number</code> | <code>0</code> | The initial value for the progress bar. _This parameter is only applicable for **determinate** progress bars._ |
 | maxValue | <code>number</code> | <code>100</code> | The maximum value for the progress bar. When the progress bar's value reaches this number, the progress bar will be considered complete and the `complete` event will be fired. _This parameter is only applicable for **determinate** progress bars._ |
 | closeOnComplete | <code>boolean</code> | <code>true</code> | Specifies whether the progress bar window should be automatically closed after the progress bar completes. If set to `false`, the progress bar will remain visible until the `close` method is called by your application. |
+| lang | <code>string</code> | <code>'en-us'</code> | Specifies the value for the `lang` attribute of the BrowserWindow's &lt;html&gt; tag. This option can also be helpful when dealing with font rendering issues. |
 | title | <code>string</code> | <code>'Wait...'</code> | Specifies the text shown on the progress bar window's title bar. |
 | text | <code>string</code> | <code>'Wait...'</code> | Specifies the text shown inside the progress bar window, next to the progress bar. |
-| detail | <code>string</code> | | Specifies the text shown between `text` and the progress bar element. It can be used to display detailed information, such as the current progress of a task. When used for this purpose, it is usually more useful to set this property later so that your application can calculate and display, in real time, the current progress of the task. |
+| detail | <code>string</code> | _empty_ | Specifies the text shown between `text` and the progress bar element. It can be used to display detailed information, such as the current progress of a task. When used for this purpose, it is usually more useful to set this property later so that your application can calculate and display, in real time, the current progress of the task. |
 | style | <code>object</code> |  | Specifices the visual styles for the `text`, `detail`, `bar`, and `value` elements. All properties and values are pure CSS format, in the exact same way they would be used in a `CSS file`. Check the options for `style` below. |
 | style.text | <code>object</code> | "Wait..." | An object containing CSS properties for styling the `text` element. |
 | style.detail | <code>object</code> | "Wait..." | An object containing CSS properties for styling the `detail` element. |
@@ -198,50 +199,51 @@ You can define most of the characteristics of the progress bar using the `option
 
 ##### `getOptions()` ⇒ <code>object</code>
 
-Return a copy of all current options.
+Return a copy of all the current options.
 
 * * *
 
 ##### `on(eventName, listener)` ⇒ <code>reference to this</code>
 
-Adds the listener function to the end of the listeners array for the event named `eventName`. No checks are made to see if the `listener` has already been added. Multiple calls passing the same combination of `eventName` and `listener` will result in the `listener` being added and called multiple times.
+Add the listener function to the end of the listeners array for the event named `eventName`, and then return a reference to `this` so that next calls can be chained.
+<br>
+P.S.: there are no checks to verify if `listener` has already been added. If you call the same combination of `eventName` and `listener` multiple times, the `listener` will be added and executed multiple times as well.
 
-Returns a reference to `this` so that calls can be chained.
 
 ### Events
 
 | Event name | Receives parameter | Description |
 | --- | --- | --- |
-| <a name="event-ready"></a>ready | | Fired when progress bar is created and ready to be used and controlled. |
-| <a name="event-progress"></a>progress | value | Available only for **determinate** progress bar. Fired every time the progress bar's value is changed. The listener receives, as first parameter, the current progress bar's value. |
-| <a name="event-completed"></a>completed | value | Fired when progress bar is completed, i.e., its value reaches `maxValue` or method `complete` is called. The listener receives, as first parameter, the current progress bar's value. |
-| <a name="event-aborted"></a>aborted | value | Fired if progress bar is closed when it's not completed yet, i.e., when user closes progress bar window or method `close` is called before progress bar is completed. The listener receives, as first parameter, the current progress bar's value. |
+| <a name="event-ready"></a>ready | _none_ | This event is fired when the progress bar has been created and is ready to be used and manipulated. |
+| <a name="event-progress"></a>progress | value | This event is available only for **determinate** progress bars. It is fired every time the progress bar's value is changed. The listener receives, as its first parameter, the current value of the progress bar. |
+| <a name="event-completed"></a>completed | value | This event is fired when the progress bar is completed, i.e., its value reaches `maxValue` or the `complete` method is called. The listener receives, as its first parameter, the current value of the progress bar. |
+| <a name="event-aborted"></a>aborted | value | This event is fired if the progress bar is closed before it's completed, i.e., when user closes the progress bar window or the `close` method is called before the progress bar reaches completion. The listener receives, as its first parameter, the current value of the progress bar. |
 
 * * *
 
 ##### `setCompleted()`
 
-Set progress bar as complete. This means the whole task is finished.
+Set the progress bar as complete, indicating that the task has finished.
 
-If progress bar is **indeterminate**, a manual call to this method is **required** because it's the only way to complete the task and trigger the `complete` event, otherwise the progress bar would be displayed forever.
+If progress bar is **indeterminate**, a manual call to this method is **required** since it's the only way to trigger the `completed` event and indicate that the task has finished. Otherwise, the progress bar will continue to be displayed indefinitely.
 
 * * *
 
 ##### `close()`
 
-Close progress bar window. If progress bar is not completed yet, it'll be aborted and event `aborted` will be fired.
+Close the progress bar window. If progress bar has not been completed yet, it will be aborted, and the `aborted` event will be fired.
 
 * * *
 
 ##### `isInProgress()` ⇒ <code>boolean</code>
 
-Return true if progress bar is currently in progress, i.e., it hasn't been completed nor aborted yet, otherwise false.
+Return `true` if the progress bar is currently in progress, meaning that it has not been completed or aborted yet; otherwise it will return `false`;
 
 * * *
 
 ##### `isCompleted()` ⇒ <code>boolean</code>
 
-Return true if progress bar is completed, otherwise false.
+Return `true` if the progress bar is completed, otherwise `false`.
 
 * * *
 
@@ -249,19 +251,19 @@ Return true if progress bar is completed, otherwise false.
 
 #### `value` ⇒ <code>number</code>
 
-Get or set progress bar's `value`. Only available for **determinate** progress bar.
+This property allows getting or setting the progress bar's current value. It is only applicable and available for **determinate** progress bars.
 
 * * *
 
 #### `text` ⇒ <code>string</code>
 
-Get or set the `text`. This information is shown inside the window and above the progress bar.
+This property allows getting or setting the progress bar's `text` information that is shown above the progress bar element.
 
 * * *
 
 #### `detail` ⇒ <code>string</code>
 
-Get or set the `detail`. This information is shown between `text` and the progress bar element. Useful to display any detailed information, e.g., the current status in real time or the current step of the task.
+This property allows getting or setting the progress bar's `detail` information that is shown between `text` and the progress bar element. Useful to display detailed information, such as the current status, in real time, or the current progress of the task.
 
 * * *
 
