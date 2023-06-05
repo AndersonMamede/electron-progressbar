@@ -19,6 +19,7 @@ class ProgressBar {
 			text: 'Wait...',
 			detail: null,
 			lang: '',
+			customHTML: null,
 			
 			style: {
 				text: {},
@@ -275,7 +276,7 @@ class ProgressBar {
 		});
 		
 		const langAttribute = this._options.lang ? `lang="${this._options.lang}"` : "";
-		this._window.loadURL('data:text/html;charset=UTF8,' + encodeURIComponent(htmlContent.replace('{{REPLACE:LANG}}', langAttribute)));
+		this._window.loadURL('data:text/html;charset=UTF8,' + encodeURIComponent((customHTML || htmlContent).replace('{{REPLACE:LANG}}', langAttribute)));
 		
 		this._window.webContents.on('did-finish-load', () => {
 			if (this._options.text !== null) {
