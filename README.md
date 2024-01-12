@@ -159,7 +159,7 @@ app.on('ready', function() {
 
 Example of a **custom** progress bar - This option can be useful when you create your own custom HTML:
 
-![Custom progress bar](/examples/custom-progress-bar.gif)
+<img src="./examples/custom-progress-bar.gif" alt="Custom progress bar" width="320" />
 
 ``` js
 const {app} = require('electron');
