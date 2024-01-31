@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.2.1 (2024-01-31)
+
+* fix: [Properly close html tag](https://github.com/AndersonMamede/electron-progressbar/pull/44) - thanks to [@oinochoe](https://github.com/oinochoe)
+
 ## v2.2.0 (2024-01-31)
 
 * feature: [Add new `customHTML` option to enable customization of HTML structure](https://github.com/AndersonMamede/electron-progressbar/pull/41) - thanks to [@oinochoe](https://github.com/oinochoe)
