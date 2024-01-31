@@ -163,7 +163,7 @@ In most scenarios, it's recommended to use the available properties under `optio
 
 An example demonstrating the use of the `customHTML` option [can be found here](/examples/6-progress-bar-with-custom-html/), and a demo can be viewed below:
 
-<img src="./examples/custom-progress-bar.gif" alt="Progress bar using customHTML" width="250" />
+<img src="./examples/progress-bar-with-custom-html.gif" alt="Progress bar using customHTML" width="250" />
 
 ---
 
