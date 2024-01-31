@@ -67,10 +67,10 @@ class ProgressBar {
 		};
 		
 		this._callbacks = {
-			'ready': [], // list of function(){}
-			'progress': [], // list of function(value){}
-			'completed': [], // list of function(value){}
-			'aborted': [] // list of function(value){}
+			'ready': [], // a list of callbacks: function(){}
+			'progress': [], // a list of callbacks: function(value){}
+			'completed': [], // a list of callbacks: function(value){}
+			'aborted': [] // a list of callbacks: function(value){}
 		};
 		
 		this._inProgress = true;
